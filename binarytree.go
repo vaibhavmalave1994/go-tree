@@ -51,3 +51,31 @@ func PreOrderTraversal(n *Node) []int64 {
 	result = append(result, right...)
 	return result
 }
+
+func InOrderTraversal(n *Node) []int64 {
+	var result []int64
+	if n == nil {
+		return result
+	}
+	left := InOrderTraversal(n.left)
+	result = append(result, n.val)
+
+	result = append(result, left...)
+	right := InOrderTraversal(n.right)
+	result = append(result, right...)
+	return result
+}
+
+func PostOrderTraversal(n *Node) []int64 {
+	var result []int64
+	if n == nil {
+		return result
+	}
+	left := InOrderTraversal(n.left)
+	right := InOrderTraversal(n.right)
+
+	result = append(result, left...)
+	result = append(result, right...)
+	result = append(result, n.val)
+	return result
+}

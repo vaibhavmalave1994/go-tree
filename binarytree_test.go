@@ -5,6 +5,9 @@ import (
 	"testing"
 )
 
+/*
+* These test cases are for preorder traversal
+ */
 func TestEmptyTree(t *testing.T) {
 	t.Run("Empty binary tree", emptyBinaryTree)
 }
@@ -12,8 +15,18 @@ func TestEmptyTree(t *testing.T) {
 //empty tree test
 func emptyBinaryTree(t *testing.T) {
 	tree := BinaryTree{}
-	result := PreOrderTraversal(tree.root)
 	var expected []int64
+
+	//for preorder traversal
+	result := PreOrderTraversal(tree.root)
+	assert.Equal(t, expected, result)
+
+	//for postorder traversal
+	result = PostOrderTraversal(tree.root)
+	assert.Equal(t, expected, result)
+
+	//for inorder traversal
+	result = InOrderTraversal(tree.root)
 	assert.Equal(t, expected, result)
 
 }
@@ -25,9 +38,19 @@ func TestOneNodeTree(t *testing.T) {
 func ondeNodeTree(t *testing.T) {
 	tree := BinaryTree{}
 	tree.Insert(1)
-	result := PreOrderTraversal(tree.root)
 	var expected []int64
 	expected = append(expected, 1)
+
+	//for preorder traversal
+	result := PreOrderTraversal(tree.root)
+	assert.Equal(t, expected, result)
+
+	//for postorder traversal
+	result = PostOrderTraversal(tree.root)
+	assert.Equal(t, expected, result)
+
+	//for inorder traversal
+	result = InOrderTraversal(tree.root)
 	assert.Equal(t, expected, result)
 }
 
@@ -41,10 +64,11 @@ func onlyLeftNodeTree(t *testing.T) {
 	tree.Insert(9)
 	tree.Insert(8)
 	tree.Insert(7)
-	result := PreOrderTraversal(tree.root)
-	var expected []int64
-	expected = append(expected, 10, 9, 8, 7)
-	assert.Equal(t, expected, result)
+
+	resultPreOrder := PreOrderTraversal(tree.root)
+	var expectedPreOrder []int64
+	expectedPreOrder = append(expectedPreOrder, 10, 9, 8, 7)
+	assert.Equal(t, expectedPreOrder, resultPreOrder)
 }
 
 func TestOnlyRightNodeTree(t *testing.T) {
@@ -92,3 +116,7 @@ func directNodeInsert(t *testing.T) {
 	var expected []int64
 	assert.Equal(t, expected, result)
 }
+
+/*
+* These test cases are for preorder traversal
+ */
